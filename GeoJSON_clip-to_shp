@@ -1,0 +1,17 @@
+library(terra)
+
+# set maximum download timeout
+options(timeout = max(6000, getOption("timeout")))
+
+# set file path and extent
+file_path <- "C:/.../philippines.geojsonl"
+e <- ext(121.2104, 121.3672, 16.38101, 16.78242)
+
+# load vector data
+system.time(v <- vect(file_path, extent = e))
+
+# print summary of vector data
+print(v)
+
+# export as shapefile
+writeVector(v, "C:/.../output_shp/shape.shp")
